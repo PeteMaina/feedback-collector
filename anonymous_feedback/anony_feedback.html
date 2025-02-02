@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anonymous Feedback Platform</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-container {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .department-ratings {
+            margin-top: 20px;
+        }
+
+        .department-ratings label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .department-ratings select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+
+        .button {
+            border-radius: 10px;
+            border: none;
+            color: #4CAF50;
+        }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Anonymous Feedback Platform</h1>
+
+    <div class="form-container">
+        <h2>Report Abuse/Mistreatment</h2>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <label for="abuse_report">Describe the abuse/mistreatment:</label>
+            <textarea id="abuse_report" name="abuse_report" rows="5" required></textarea><br><br>
+            <button type="submit" name="submit_abuse">Submit Report</button>
+        </form>
+
+        <h2>Report Underpayment/Overpayment</h2>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <label for="underpayment_report">Describe the underpayment/overpayment issue:</label>
+            <textarea id="underpayment_report" name="underpayment_report" rows="5" required></textarea><br><br>
+            <button type="submit" name="submit_underpayment">Submit Report</button>
+        </form>
+    </div>
+
+    <div class="department-ratings">
+        <h2>Departmental Feedback</h2>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <label for="hr_feedback">HR Department:</label>
+            <select id="hr_feedback" name="hr_feedback" required>
+                <option value="excellent">Excellent</option>
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+                <option value="poor">Poor</option>
+                <option value="very_poor">Very Poor</option>
+            </select><br><br>
+
+            <label for="it_feedback">IT Department:</label>
+            <select id="it_feedback" name="it_feedback" required>
+                <option value="excellent">Excellent</option>
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+                <option value="poor">Poor</option>
+                <option value="very_poor">Very Poor</option>
+            </select><br><br>
+
+            <label for="cleaners_feedback">Cleaners:</label> 
+            <select id="cleaners_feedback" name="cleaners_feedback" required> 
+                <option value="excellent">Excellent</option> 
+                <option value="good">Good</option> 
+                <option value="fair">Fair</option> 
+                <option value="poor">Poor</option> 
+                <option value="very_poor">Very Poor</option> 
+            </select><br><br> 
+
+            <label for="business_feedback">Business Team:</label> 
+            <select id="business_feedback" name="business_feedback" required> 
+                <option value="excellent">Excellent</option> 
+                <option value="good">Good</option> 
+                <option value="fair">Fair</option> 
+                <option value="poor">Poor</option> 
+                <option value="very_poor">Very Poor</option> 
+            </select><br><br> 
+
+            <label for="executive_feedback">Executive Team:</label> 
+            <select id="executive_feedback" name="executive_feedback" required> 
+                <option value="excellent">Excellent</option> 
+                <option value="good">Good</option> 
+                <option value="fair">Fair</option> 
+                <option value="poor">Poor</option> 
+                <option value="very_poor">Very Poor</option> 
+            </select><br><br> 
+
+            <label for="social_media_feedback">Social Media Team:</label> 
+            <select id="social_media_feedback" name="social_media_feedback" required> 
+                <option value="excellent">Excellent</option> 
+                <option value="good">Good</option> 
+                <option value="fair">Fair</option> 
+                <option value="poor">Poor</option> 
+                <option value="very_poor">Very Poor</option> 
+            </select><br><br> 
+
+            <label for="food_cooks_feedback">Food and Cooks Team:</label> 
+            <select id="food_cooks_feedback" name="food_cooks_feedback" required> 
+                <option value="excellent">Excellent</option> 
+                <option value="good">Good</option> 
+                <option value="fair">Fair</option> 
+                <option value="poor">Poor</option> 
+                <option value="very_poor">Very Poor</option> 
+            </select><br><br> 
+
+            <label for="drivers_feedback">Drivers, Onloaders, Offloaders Team:</label> 
+            <select id="drivers_feedback" name="drivers_feedback" required> 
+                <option value="excellent">Excellent</option> 
+                <option value="good">Good</option> 
+                <option value="fair">Fair</option> 
+                <option value="poor">Poor</option> 
+                <option value="very_poor">Very Poor</option> 
+            </select><br><br> 
+
+            <button type="submit" class="button" name="submit_departmental_feedback">Submit Feedback</button>
+        </form>
+    </div>
+
+    <?php
+    // Database connection (replace with your actual credentials)
+    $servername = "localhost";
+    $username = "your_username";
+    $password = "your_password";
+    $dbname = "your_database_name";
+
+    try {
+        $conn = new PDO("mysql:host=<span class="math-inline">servername;dbname\=</span>dbname", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Handle form submissions
+        if (isset($_POST['submit_abuse'])) {
+            $abuse_report = $_POST['abuse_report'];
+            // Insert abuse report into the database (omitted for brevity)
+            echo "<p>Abuse report submitted successfully!</p>";
+        }
+
+        if (isset($_POST['submit_underpayment'])) {
+            $underpayment_report = $_POST['underpayment_report'];
+            // Insert underpayment report into the database (omitted for brevity)
+            echo "<p>Underpayment/Overpayment report submitted successfully!</p>";
+        }
+
+        if (isset($_POST['submit_departmental_feedback'])) {
+            $hr_feedback = $_POST['hr_feedback'];
+            $it_feedback = $_POST['it_feedback'];
+            $cleaners_feedback = $_POST['cleaners_feedback'];
+            $business_feedback = $_POST['business_feedback'];
+            $executive_feedback = $_POST['executive_feedback'];
+            $social_media_feedback = $_POST['social_media_feedback'];
+            $food_cooks_feedback = $_POST['food_cooks_feedback'];
+            $drivers_feedback = $_POST['drivers_feedback'];
+            // Insert departmental feedback into the database (omitted for brevity)
+            echo "<p>Departmental feedback submitted successfully!</p
